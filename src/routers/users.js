@@ -12,12 +12,13 @@ userRouter.post('/',async (req, res)=>{
     
     await user.save()
     
-    .then((data)=>{
-        const token = user.generateAuthToken()
+    .then(async (data)=>{
+        const token = await user.generateAuthToken()
         //console.log(data.password + ' one')
+        console.log(token)
         res.send({user, token})
     }).catch((err)=>{
-        res.status(400).send('Unable to complete request or Email already taken')
+        res.status(400).send()
     })
     // User.create(req.body)
     // .then((user)=>{
